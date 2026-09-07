@@ -86,10 +86,11 @@ echo "Creating and starting container '${CONTAINER_NAME}'..."
 exec docker run -it --rm \
     --name "${CONTAINER_NAME}" \
     --privileged \
-    --network host \
+    -p 8888:8888 \
     -e "HOST_UID=$(id -u)" \
     -e "HOST_GID=$(id -g)" \
     -v "${SCRIPT_DIR}:${CONTAINER_HOME}" \
+    -v /Volumes:/Volumes \
     -v /dev/bus/usb:/dev/bus/usb \
     -w "${CONTAINER_HOME}" \
     "${IMAGE_NAME}" \
